@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>DM &ndash; Publications</title>
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link href="css/style.css" type="text/css" rel="stylesheet" />
+
+<!-- jQuery (already used elsewhere on your site) -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/s3Slider.js" type="text/javascript"></script><!-- Publications-specific styling -->
+  <style>
+#publications-section {
+width: 100%;
+margin: 20px 0;
+font-family: Arial, sans-serif;
+}
+.year {
+font-weight: bold;
+font-size: 1.2em;
+margin: 30px 0 10px 0;
+border-bottom: 1px solid #777;
+padding-bottom: 5px;
+}
+.publication-container {
+display: flex;
+gap: 20px;
+align-items: flex-start;
+margin-bottom: 20px;
+padding: 10px;
+border-left: 3px solid #777;
+background-color: #f5f5f5;
+}
+.pub-details {
+flex: 1;
+}
+.pub-details h3 {
+margin: 0 0 5px 0;
+font-size: 16px;
+color: #333;
+}
+.pub-details p {
+margin: 3px 0;
+font-size: 14px;
+color: #555;
+}
+.pub-details a {
+color: #333;
+text-decoration: underline;
+}
+.pub-image {
+width: 200px;
+min-width: 200px;
+border: 1px solid #ccc;
+background-color: #eee;
+text-align: center;
+padding: 5px;
+}
+.pub-image img {
+max-width: 100%;
+height: auto;
+display: block;
+}
+.placeholder {
+font-size: 12px;
+color: #777;
+}
+  </style><!-- Existing slider code (unchanged) -->
+  <script type="text/javascript">
+$(document).ready(function () {
+$('#slider1').s3Slider({ timeOut: 4000 });
+});
+  </script>
+  <script type="text/javascript">
+$(document).ready(function () {
+$(".pane-list li").click(function () {
+window.location = $(this).find("a").attr("href");
+return false;
+});
+});
+  </script>
+</head>
+
+
+<body>
+
+<div id="container">
+<!-- Navigation -->
+<div id="nav">
+<div id="logo"><a href="index.html"><img src="images/logo.png" alt="" height="85" width="78" /></a>
+</div>
+
+<ul>
+
+  <li><a href="index.html">Home</a></li>
+
+  <li><a href="Members.html">Members</a></li>
+
+  <li><a href="Research.html">Research</a></li>
+
+  <li><a href="Publications.html">Publications</a></li>
+
+  <li><a href="Resources.xhtml">Resources</a></li>
+
+</ul>
+
+</div>
+
+<!-- Publications section -->
+<div id="publications-section">
+<h2>Publications
+<span style="font-size: 0.6em; font-weight: normal;">( <a href="old_publications.html">publications before 2020</a>
+)
+</span></h2>
+
+<div id="publications"></div>
+
+</div>
+
+</div>
+
+<!-- ===================== --><!-- ORCID PUBLICATIONS JS --><!-- ===================== -->
+<script>
+const ORCID_ID = "0000-0001-8184-1474";
+const ORCID_API = `https://pub.orcid.org/v3.0/${ORCID_ID}/works`;
+async function fetchJSON(url, headers = {}) {
+try {
+const response = await fetch(url, { headers });
+if (!response.ok) return null;
+return response.json();
+} catch (e) {
+console.error(e);
+return null;
+}
+}
+function extractDOI(work) {
+const ids = work["external-ids"]?.["external-id"] || [];
+for (const id of ids) {
+if (id["external-id-type"] === "doi") {
+return id["external-id-value"];
+}
+}
+return null;
+}
+async function fetchCrossrefMetadata(doi) {
+const url = `https://api.crossref.org/works/${encodeURIComponent(doi)}`;
+const data = await fetchJSON(url);
+if (!data || !data.message) return {};
+const msg = data.message;
+const authors = (msg.author || [])
+.map(a => `${a.given || ""} ${a.family || ""}`.trim())
+.join(", ");
+const journal =
+msg["container-title"] && msg["container-title"].length
+? msg["container-title"][0]
+: "";
+return { authors, journal };
+}
+async function loadPublications() {
+const container = document.getElementById("publications");
+container.innerHTML = "<p>Loading publications…</p>";
+const worksData = await fetchJSON(ORCID_API, {
+"Accept": "application/json"
+});
+if (!worksData) {
+container.innerHTML = "<p>Failed to load publications.</p>";
+return;
+}
+const publicationsByYear = {};
+for (const group of worksData.group) {
+const summary = group["work-summary"][0];
+const year = summary["publication-date"]?.year?.value || "Unknown year";
+if (!publicationsByYear[year]) publicationsByYear[year] = [];
+publicationsByYear[year].push(summary);
+}
+const years = Object.keys(publicationsByYear)
+.sort((a, b) => b.localeCompare(a));
+container.innerHTML = "";
+for (const year of years) {
+const y = document.createElement("div");
+y.className = "year";
+y.textContent = year;
+container.appendChild(y);
+for (const summary of publicationsByYear[year]) {
+const title = summary.title?.title?.value || "Untitled";
+const doi = extractDOI(summary);
+let authors = "";
+let journal = "";
+if (doi) {
+const meta = await fetchCrossrefMetadata(doi);
+authors = meta.authors || "";
+journal = meta.journal || "";
+}
+const safeDOI = doi ? doi.replace(/\//g, "_") : null;
+const imagePath = safeDOI
+? `graphical_abstract/${safeDOI}.jpg`
+: null;
+const pub = document.createElement("div");
+pub.className = "publication-container";
+pub.innerHTML = `
+<div class="pub-details">
+<h3>${title}</h3>
+${authors ? `<p><strong>Authors:</strong> ${authors}</p>` : ""}
+${journal ? `<p><strong>Journal:</strong> ${journal}</p>` : ""}
+${doi ? `<p><strong>DOI:</strong> <a href="https://doi.org/${doi}" target="_blank">${doi}</a></p>` : ""}
+</div>
+<div class="pub-image">
+${imagePath
+? `<img src="${imagePath}" alt="Graphical abstract"
+onerror="this.parentNode.innerHTML='<div class=placeholder>Graphical abstract not available</div>'">`
+: `<div class="placeholder">Graphical abstract not available</div>`}
+</div>
+`;
+container.appendChild(pub);
+}
+}
+}
+$(document).ready(loadPublications);
+</script>
+</body>
+</html>

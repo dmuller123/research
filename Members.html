@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>DM</title>
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/s3Slider.js"></script>
+  <script type="text/javascript">
+$(document).ready(function () {
+$('#slider1').s3Slider({ timeOut: 4000 });
+$(".pane-list li").click(function () {
+window.location = $(this).find("a").attr("href");
+return false;
+});
+});
+  </script>
+  <style type="text/css">
+/* ===== Layout ===== */
+#left {
+width: 100%;
+max-width: 1200px;
+margin: 0 auto;
+}
+/* ===== Profile Section ===== */
+.profile-section {
+display: flex;
+align-items: flex-start;
+gap: 25px;
+margin-bottom: 25px;
+}
+.profile-image img {
+width: 140px;
+display: block; /* FIX white rectangle */
+background: none;
+border-radius: 4px;
+margin-top: 4px;
+}
+.profile-details h2 {
+margin: 0;
+color: #274462;
+font-size: 26px;
+}
+.profile-details p {
+margin: 10px 0;
+text-align: justify;
+}
+/* ===== Recruitment Section ===== */
+.recruitment-section {
+display: flex;
+align-items: flex-start;
+gap: 25px;
+margin: 30px 0;
+}
+.recruitment-image img {
+width: 140px;
+display: block;
+}
+.recruitment-text h2 {
+margin: 0 0 10px 0;
+color: #274462;
+font-size: 26px;
+}
+.recruitment-text p {
+margin: 0;
+text-align: justify;
+}
+/* ===== Separators ===== */
+hr {
+border: none;
+border-top: 2px solid #ccc;
+margin: 30px 0;
+}
+/* ===== Past Members ===== */
+.past-members-section {
+margin-top: 40px;
+}
+.past-members-title {
+background-color: #eeeeee;
+padding: 10px 0;
+margin-bottom: 20px;
+text-align: center;
+}
+.past-members-title h3 {
+margin: 0;
+color: #274462;
+font-size: 22px;
+}
+.member-list-header,
+.member-list li {
+display: flex;
+justify-content: space-between;
+padding: 8px 12px;
+}
+.member-list-header {
+font-weight: bold;
+border-bottom: 2px solid #ccc;
+}
+.member-name,
+.member-type,
+.member-duration {
+flex-basis: 33%;
+}
+.member-type {
+text-align: center;
+}
+.member-duration {
+text-align: right;
+}
+.member-list {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.member-list li {
+border-bottom: 1px solid #eee;
+}
+  </style>
+</head>
+
+
+<body>
+
+<div id="container">
+<!-- Navigation -->
+<div id="nav">
+<div id="logo">
+<a href="index.html">
+<img src="images/logo.png" alt="" height="85" width="78" />
+</a>
+</div>
+
+<ul>
+
+  <li><a href="index.html">Home</a></li>
+
+  <li><a href="Members.html">Members</a></li>
+
+  <li><a href="Research.html">Research</a></li>
+
+  <li><a href="Publications.html">Publications</a></li>
+
+  <li><a href="Resources.xhtml">Resources</a></li>
+
+</ul>
+
+</div>
+
+<!-- End Navigation -->
+<div id="left">
+<!-- Profile -->
+<div class="profile-section">
+<div class="profile-image">
+<img src="images/DSM_FOTOa.PNG" alt="Daniel S. M&uuml;ller" />
+</div>
+
+<div class="profile-details">
+<h2>Daniel S. M&uuml;ller</h2>
+
+<p>
+Daniel received his diploma in chemistry in 2008 under the guidance of
+Prof. Bernhard Breit at the University of Freiburg, Germany. In 2012,
+he earned his Ph.D. in chemistry from the University of Geneva under
+the direction of Prof. Alexandre Alexakis. As a SNSF fellow, Daniel
+conducted postdoctoral studies with Prof. Larry E. Overman at the
+University of California, Irvine (USA). In 2014, Daniel joined
+Prof. Ilan Marek's group at the Technion (Haifa, Israel). In 2016, he
+moved to Rennes and in 2020 was appointed CNRS researcher at the
+Institute of Chemical Research in Rennes (France).
+</p>
+
+<p class="read_more">
+<a href="https://scholar.google.com/citations?hl=de&amp;user=T1tOfxwAAAAJ">
+Google Scholar Profile
+</a>
+</p>
+
+</div>
+
+</div>
+
+<hr />
+<!-- Recruitment -->
+<div class="recruitment-section">
+<div class="recruitment-image">
+<img src="images/Candidate.JPG" alt="Future candidate" />
+</div>
+
+<div class="recruitment-text">
+<h2>Future candidate</h2>
+
+<p>
+Currently, the group does not have funded PhD positions.
+Prospective candidates are welcome to apply for external
+scholarships, and I will gladly provide support and
+recommendations for such applications.
+</p>
+
+</div>
+
+</div>
+
+<hr />
+<!-- Past Members -->
+<div class="past-members-section">
+<div class="past-members-title">
+<h3>Past Members</h3>
+
+</div>
+
+<div class="member-list-header">
+<div class="member-name">Name</div>
+
+<div class="member-type">Type</div>
+
+<div class="member-duration">Dates</div>
+
+</div>
+
+<ul class="member-list">
+
+  <li>
+    <div class="member-name">Paul Charki</div>
+
+    <div class="member-type">PhD candidate</div>
+
+    <div class="member-duration">10/2022&ndash;10/2025</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Najet Ballagha</div>
+
+    <div class="member-type">Internship</div>
+
+    <div class="member-duration">01/2025&ndash;02/2025</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Lidia Benzai</div>
+
+    <div class="member-type">Internship M2</div>
+
+    <div class="member-duration">01/2025&ndash;07/2025</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Thibaut Gourlaouen</div>
+
+    <div class="member-type">Internship BUT 2</div>
+
+    <div class="member-duration">01/2025&ndash;03/2025</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Lunan Zhou</div>
+
+    <div class="member-type">Internship M2</div>
+
+    <div class="member-duration">02/2024&ndash;07/2024</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Rodolph Massoud</div>
+
+    <div class="member-type">Internship M2</div>
+
+    <div class="member-duration">02/2024&ndash;07/2024</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Raffaele Stasi</div>
+
+    <div class="member-type">Internship</div>
+
+    <div class="member-duration">03/2023&ndash;04/2024</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Louann Maillet</div>
+
+    <div class="member-type">Internship M1</div>
+
+    <div class="member-duration">01/2023&ndash;03/2023</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Hugo Bevan</div>
+
+    <div class="member-type">Internship M1</div>
+
+    <div class="member-duration">04/2022&ndash;07/2022</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Arnaud Olivier</div>
+
+    <div class="member-type">PhD candidate</div>
+
+    <div class="member-duration">01/2022&ndash;07/2022</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Baptiste Vergeon</div>
+
+    <div class="member-type">Internship L3</div>
+
+    <div class="member-duration">04/2021&ndash;07/2021</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Quentin Fevre-Renault</div>
+
+    <div class="member-type">Internship M1</div>
+
+    <div class="member-duration">04/2021&ndash;07/2021</div>
+
+  </li>
+
+  <li>
+    <div class="member-name">Charlotte Boisnard</div>
+
+    <div class="member-type">Internship M1</div>
+
+    <div class="member-duration">03/2021&ndash;06/2021</div>
+
+  </li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

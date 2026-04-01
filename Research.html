@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>DM</title>
+
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="js/s3Slider.js"></script>
+  <script type="text/javascript">
+$(document).ready(function () {
+$('#slider1').s3Slider({
+timeOut: 4000
+});
+});
+  </script>
+  <script type="text/javascript">
+$(document).ready(function () {
+$(".pane-list li").click(function () {
+window.location = $(this).find("a").attr("href");
+return false;
+});
+});
+  </script>
+</head>
+
+
+<body>
+
+<div id="container">
+<div id="nav">
+<div id="logo"><a href="index.html"><img src="images/logo.png" alt="" height="85" width="78" /></a></div>
+
+<ul>
+
+  <li><a href="index.html">Home</a><span class="nav_text"></span></li>
+
+  <li><a href="Members.html">Members</a><span class="nav_text"></span></li>
+
+  <li><a href="Research.html">Research</a><span class="nav_text"></span></li>
+
+  <li><a href="Publications.html">Publications</a><span class="nav_text"></span></li>
+
+  <li><a href="Resources.xhtml">Resources</a><span class="nav_text"></span></li>
+
+</ul>
+
+</div>
+
+<div id="left"> <br />
+
+<div class="blog_post">
+<h2>Research</h2>
+
+<p style="text-align: justify;">Our research group
+specializes in
+generating cations and trapping them using various nucleophiles, with a
+focus on organosilanes and organoaluminums. The image illustrates a
+personified aluminum Lewis acid at work, creating a carbenium ion.
+While AI is advancing, it still struggles to fully grasp the
+intricacies of carbon bonding&mdash;so&nbsp;some are incorrect,
+our
+apologies!</p>
+
+<p style="text-align: center;"><img style="width: 566px; height: 543px;" alt="" src="images/Al-guy.JPG" /><br />
+
+</p>
+
+<p class="read_more"></p>
+
+<p class="blog_post_meta"><small><br />
+
+</small></p>
+
+<p class="blog_post_meta"><small><br />
+
+</small></p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
